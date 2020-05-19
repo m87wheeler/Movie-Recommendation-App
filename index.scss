@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@500;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@500;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 
 $yellow: #d5b942;
 $grey: #acbfa4;
 $blue: #1a535c;
 $red: #ff1b1c;
-$white: #e2e8ce; 
+$white: #e2e8ce;
 $black: #010508;
 
 * {
@@ -23,31 +23,34 @@ html {
 #app {
     display: block;
     min-height: 100vh;
-    height: auto;
-    width: 100%;
-    padding: 10vh 0;
-    font-family: 'Lato', sans-serif;
+    width: 100vw;
+    padding: 10vh 0 0;
+    font-family: "Lato", sans-serif;
     font-size: 16px;
     background-color: $blue;
+    overflow: hidden;
+
+    #mobile-only {
+        display: block;
+        height: 60vh;
+        width: 60%;
+        margin: 0 auto;
+        font-size: 3em;
+        text-align: center;
+        color: white;
+    }
 
     button {
-        width: 80%;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        border: none;
-        background-color: $yellow;
-        color: $black;
-        font-size: 1.5em;
-        font-weight: 700;
-        letter-spacing: .1em;
-        padding: .5em;
-        outline: 3px solid #c4a831;
+        display: none;
     }
 
     h1 {
+        display: block;
         width: 100%;
         margin-bottom: 5vh;
-        font-family: 'Catamaran', sans-serif;
+        margin-left: 0;
+        margin-top: -7vh;
+        font-family: "Catamaran", sans-serif;
 
         .title-word {
             width: inherit;
@@ -70,15 +73,108 @@ html {
         }
     }
 
+    .search-params {
+        display: none;
+    }
+
+    #search-alert {
+        display: none;
+    }
+
     main {
+        display: none;
+    }
+
+    footer {
+        width: 100%;
+        height: 10vh;
+        background-color: $blue;
+        padding: 2.5vh 5%;
+        margin-top: 10vh;
+
+        .attribution {
+            width: 40%;
+            margin: 0 30%;
+
+            p {
+                font-size: 0.8em;
+                color: $white;
+                text-align: center;
+            }
+        }
+    }
+}
+
+/* Portrait and Landscape */
+@media only screen and (max-width: 640px) {
+    #app {
+        display: block;
+        height: auto;
+        width: 100%;
+        padding: 10vh 0 0;
+        font-family: "Lato", sans-serif;
+        font-size: 16px;
+        background-color: $blue;
+
+        #mobile-only {
+            display: none;
+        }
+
+        button {
+            display: block;
+            width: 80%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            border: none;
+            background-color: $yellow;
+            color: $black;
+            font-size: 1.5em;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 0.5em;
+            outline: 3px solid #c4a831;
+            transition: all 0.4s ease-in-out;
+        }
+
+        h1 {
+            display: block;
+            width: 100%;
+            margin-bottom: 5vh;
+            margin-left: 0;
+            margin-top: 0;
+            font-family: "Catamaran", sans-serif;
+    
+            .title-word {
+                width: inherit;
+                padding-left: 10%;
+    
+                span {
+                    display: inline-block;
+                    width: 15%;
+                    font-size: 10vw;
+                    text-align: center;
+                }
+            }
+    
+            .title-word:nth-of-type(1),
+            .title-word:nth-of-type(3) {
+                color: $yellow;
+            }
+            .title-word:nth-of-type(2) {
+                color: $white;
+            }
+        }
 
         .search-params {
+            display: block;
+            position: relative;
             width: 70%;
-            margin: 3vh 15% 10vh;
+            margin: 3vh 15% 3vh;
             padding: 10px 30px 30px;
             text-align: center;
-            outline: 3px solid #c4a831;
-            
+            border: 3px solid #c4a831;
+            background-color: $blue;
+            z-index: 9999;
 
             .params-label {
                 font-size: 1em;
@@ -95,27 +191,27 @@ html {
             .slidecontainer {
                 width: 100%;
             }
-            
+
             .slider {
-                -webkit-appearance: none; 
+                -webkit-appearance: none;
                 appearance: none;
-                width: 100%; 
-                height: 15px; 
+                width: 100%;
+                height: 15px;
                 background: $grey;
-                outline: none; 
-                -webkit-transition: .2s;
-                transition: opacity .2s;
+                outline: none;
+                -webkit-transition: 0.2s;
+                transition: opacity 0.2s;
             }
-            
+
             .slider::-webkit-slider-thumb {
-                -webkit-appearance: none; 
+                -webkit-appearance: none;
                 appearance: none;
-                width: 25px; 
-                height: 25px; 
+                width: 25px;
+                height: 25px;
                 background: $yellow;
                 cursor: pointer;
             }
-            
+
             .slider::-moz-range-thumb {
                 width: 25px;
                 height: 25px;
@@ -124,83 +220,147 @@ html {
             }
         }
 
-        .movie-container {
-            width: 90%;
-            margin: 5vh 5%;
-            height: auto;
-    
-            .title-container {
+        #search-alert {
+            position: relative;
+            display: flex;
+            width: 70%;
+            height: 6.5em;
+            margin: -8em 15% 5vh;
+            opacity: 0;
+            transition: all 0.4s ease-in-out;
+            z-index: 1;
+
+            div {
                 position: relative;
-                width: 100%;
+                width: 20%;
                 height: auto;
-                padding: 5%;
-                height: 80px;
-                color: $white;
-                background-color: $blue;
-    
-                #movie-title {
+                background-color: $yellow;
+                border: 3px solid $white;
+
+                p {
+                    display: block;
                     position: absolute;
-                    left: 10%;
+                    left: 0;
                     top: 50%;
                     transform: translateY(-50%);
-                    width: 80%;
+                    width: 100%;
                     height: auto;
                     text-align: center;
-                    font-size: 1.25em;
-                    font-weight: 700;
-                    text-transform: capitalize;
+                    color: $black;
+                    font-size: 3.5em;
                 }
             }
-    
-            #movie-image {
-                width: 200px;
-                height: 300px;
-                border: 3px solid white;
-                margin-left: 50%;
-                transform: translateX(-50%);
-                overflow: hidden;
-                background-color: darkgrey;
-    
-                img {
-                    width: 200px;
-                    height: 300px;
-                }
-            }
-    
-            #description {
-                color: $white;
+
+            p.search-text {
                 width: 80%;
-                margin: 5vh 10%;
-                text-align: justify;
+                height: inherit;
+                border: 3px solid $white;
+                border-left: none;
+                padding: 0.5em;
+                color: $white;
             }
         }
-    
-        .movie-details {
-            text-align: center;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            width: 80%;
-            margin: 0 10%;
-    
-            #rating,
-            #year,
-            .detail-title {
-                width: 50%;
-            } 
-    
-            .detail-title {
-                color: $yellow;
-                font-weight: 700;
+
+        main {
+            display: block;
+
+            .movie-container {
+                width: 90%;
+                margin: 5vh 5%;
+                height: auto;
+
+                .title-container {
+                    position: relative;
+                    width: 100%;
+                    height: auto;
+                    padding: 5%;
+                    height: 80px;
+                    color: $white;
+                    background-color: $blue;
+
+                    #movie-title {
+                        position: absolute;
+                        left: 10%;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 80%;
+                        height: auto;
+                        text-align: center;
+                        font-size: 1.25em;
+                        font-weight: 700;
+                        text-transform: capitalize;
+                    }
+                }
+
+                #movie-image {
+                    width: 200px;
+                    height: 300px;
+                    border: 3px solid white;
+                    margin-left: 50%;
+                    transform: translateX(-50%);
+                    overflow: hidden;
+                    background-color: darkgrey;
+
+                    img {
+                        width: 200px;
+                        height: 300px;
+                    }
+                }
+
+                #description {
+                    color: $white;
+                    width: 80%;
+                    margin: 5vh 10%;
+                    text-align: justify;
+                    font-size: 1em;
+                    line-height: 1.5em;
+                }
             }
-    
-            #rating,
-            #year {
-                color: $white;
-                height: 30px;
+
+            .movie-details {
+                text-align: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 80%;
+                margin: 0 10%;
+
+                #rating,
+                #year,
+                .detail-title {
+                    width: 50%;
+                }
+
+                .detail-title {
+                    color: $yellow;
+                    font-weight: 700;
+                }
+
+                #rating,
+                #year {
+                    color: $white;
+                    height: 30px;
+                }
+            }
+        }
+
+        footer {
+            width: 100%;
+            height: 10vh;
+            background-color: $blue;
+            padding: 2.5vh 5%;
+            margin-top: 10vh;
+
+            .attribution {
+                width: 40%;
+                margin: 0 30%;
+
+                p {
+                    font-size: 0.8em;
+                    color: $white;
+                    text-align: center;
+                }
             }
         }
     }
 }
-
-

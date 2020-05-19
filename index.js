@@ -21,8 +21,31 @@ const fetchMovieData = async url => {
     return data;
 }
 
+// Display search warning when filters are high
+let ratingVal = 0;
+let yearVal = 0;
+const displaySearchWarning = (valueType, value) => {
+    if ( valueType === 'rating' ) {
+        ratingVal = parseInt(value);
+    } else if ( valueType === 'year' ) {
+        yearVal = parseInt(value);
+    }
+
+    const SEARCH_ALERT = document.querySelector('#search-alert');
+
+    if ( ratingVal > 7 || yearVal > 11 || ratingVal + yearVal > 17 ) {
+        
+        SEARCH_ALERT.style.marginTop = '0';
+        SEARCH_ALERT.style.opacity = '1'; 
+    } else {
+        
+        SEARCH_ALERT.style.marginTop = '-7.5em';
+        SEARCH_ALERT.style.opacity = '0';
+    }
+}
+
 // Display range slider value
-const sliderDefaultValue = (sliderId, outputId, type = '') => {
+const displayRangeValueOutput = (sliderId, outputId, type = '') => {
     const SLIDER = document.querySelector(sliderId);
     const RANGE_OUTPUT = document.querySelector(outputId);
     RANGE_OUTPUT.innerText = 'ALL';
@@ -33,6 +56,7 @@ const sliderDefaultValue = (sliderId, outputId, type = '') => {
                 SLIDER.value === '0' ? (
                     RANGE_OUTPUT.innerText = 'ALL'
                 ) : (
+                    displaySearchWarning('year', SLIDER.value),
                     RANGE_OUTPUT.innerHTML = 
                         `${( this.value * 10 ) + 1900} +`
                 )
@@ -40,14 +64,19 @@ const sliderDefaultValue = (sliderId, outputId, type = '') => {
             break;
         default:
             SLIDER.oninput = function() {
-                SLIDER.value === '0' ? RANGE_OUTPUT.innerText = 'ALL' : RANGE_OUTPUT.innerHTML = this.value;
+                SLIDER.value === '0' ? (
+                    RANGE_OUTPUT.innerText = 'ALL'
+                ) : (
+                    displaySearchWarning('rating', SLIDER.value),
+                    RANGE_OUTPUT.innerHTML = this.value
+                )
             }
             break;
     }
     return SLIDER
-}
-const RATING_SLIDER = sliderDefaultValue('#min-rating', '#range-output');
-const YEAR_SLIDER = sliderDefaultValue('#min-year', '#year-output', 'year');
+};
+const RATING_SLIDER = displayRangeValueOutput('#min-rating', '#range-output');
+const YEAR_SLIDER = displayRangeValueOutput('#min-year', '#year-output', 'year');
 
 // Scroll through array on timeout
 const timedScroll = array => {
@@ -83,18 +112,24 @@ const finalMovieDetails = (arr, a) => {
 
 // Display description, year and rating of movie
 const finalMovie = (array, randNum) => {
-
-    if ( array[randNum].vote_average >= parseInt( RATING_SLIDER.value)) {
-        finalMovieDetails(array, randNum);
-    } else {
+    if ( 
+        array[randNum].vote_average < parseInt( RATING_SLIDER.value ) ||
+        parseInt(array[randNum].release_date.substring(0, 4)) < ( YEAR_SLIDER.value * 10 ) + 1900 
+    ) {
         for ( let i = 0 ; i < array.length ; i++ ) {
-            if ( array[i].vote_average > parseInt( RATING_SLIDER.value) ) {
+            if ( 
+                array[i].vote_average >= parseInt( RATING_SLIDER.value) &&
+                parseInt(array[randNum].release_date.substring(0, 4)) >= ( YEAR_SLIDER.value * 10 ) + 1900  
+            ) {
                 finalMovieDetails(array, i);
+                break;
             } else {
                 randomMovie();
                 break;
             }
         }
+    } else {
+        finalMovieDetails(array, randNum)
     }
 };
 

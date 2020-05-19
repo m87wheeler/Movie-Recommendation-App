@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>Document</title>
+    <title>Agne's Random Movie - Random Movie Generator From 10.000 Movies</title>
 </head>
 <body>
     <div id="app">
@@ -20,18 +20,33 @@
             </div>
         </h1>
 
+        <div id="mobile-only">
+            <p>We're sorry. We haven't designed this site for tablet or desktop use yet.</p>
+            <br />
+            <p>Please visit us on mobile.</p>
+        </div>
+
+        <div class="search-params">
+            <!-- <input type="text" name="cast" id="cast" placeholder='Actor/Actress'> -->
+            <p class='params-label'>Minimum Rating : &nbsp; <span class='range-output' id="range-output"></span></p>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="8" value="0" class="slider" id="min-rating">
+            </div> 
+            <p class='params-label'>From Year : &nbsp; <span class='range-output' id="year-output"></span></p>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="12" value="0" class="slider" id="min-year">
+            </div>             
+        </div>
+        
+        <div id="search-alert">
+            <div><p>!</p></div>
+            <p class='search-text'>
+                We search over 10,000 movies. The more strict
+                you are with your searches the longer they may take.
+            </p>
+        </div>
+
         <main>
-            <div class="search-params">
-                <!-- <input type="text" name="cast" id="cast" placeholder='Actor/Actress'> -->
-                <p class='params-label'>Minimum Rating : &nbsp; <span class='range-output' id="range-output"></span></p>
-                <div class="slidecontainer">
-                    <input type="range" min="0" max="8" value="0" class="slider" id="min-rating">
-                </div> 
-                <p class='params-label'>From Year : &nbsp; <span class='range-output' id="year-output"></span></p>
-                <div class="slidecontainer">
-                    <input type="range" min="0" max="12" value="0" class="slider" id="min-year">
-                </div>             
-            </div>
             <button id="get-random-movie">FIND A RANDOM MOVIE</button>
             <div class='movie-container'>
                 <div class="title-container">
@@ -50,7 +65,15 @@
                 
             </div>
         </main>
+        <footer>
+            <div class="attribution">
+                <p>This app is powered by</p>
+                <a href="https://www.themoviedb.org/" target='_blank'>
+                    <img src="./tmdb-logo.svg" alt="The Movie Database">
+                </a>
+            </div>
+        </footer>
     </div>
-    <script src="index_v2.0.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
