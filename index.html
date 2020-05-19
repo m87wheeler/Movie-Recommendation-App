@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1 class="main-title">
+            <div class='title-word'>
+                <span>A</span><span>G</span><span>N</span><span>E</span><span>'</span><span>S</span>
+            </div>
+            <div class='title-word'>
+                <span>R</span><span>A</span><span>N</span><span>D</span><span>O</span><span>M</span>
+            </div>
+            <div class='title-word'>
+                <span>M</span><span>O</span><span>V</span><span>I</span><span>E</span><span>!</span>
+            </div>
+        </h1>
+
+        <main>
+            <div class="search-params">
+                <!-- <input type="text" name="cast" id="cast" placeholder='Actor/Actress'> -->
+                <p class='params-label'>Minimum Rating : &nbsp; <span class='range-output' id="range-output"></span></p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="8" value="0" class="slider" id="min-rating">
+                </div> 
+                <p class='params-label'>From Year : &nbsp; <span class='range-output' id="year-output"></span></p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="12" value="0" class="slider" id="min-year">
+                </div>             
+            </div>
+            <button id="get-random-movie">FIND A RANDOM MOVIE</button>
+            <div class='movie-container'>
+                <div class="title-container">
+                    <p id="movie-title"></p>
+                </div>
+                <div class="movie-details">
+                    <div class="detail-title">Avg. Rating</div>
+                    <div class="detail-title">Release Year</div>
+                    <div id="rating"></div>
+                    <div id="year"></div>
+                </div>
+                <div id="movie-image"></div>
+                <p id="description"></p>
+            </div>
+            <div class="more-details-container">
+                
+            </div>
+        </main>
+    </div>
+    <script src="index_v2.0.js"></script>
+</body>
+</html>

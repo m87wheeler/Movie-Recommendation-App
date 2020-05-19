@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+$yellow: #d5b942;
+$grey: #acbfa4;
+$blue: #1a535c;
+$red: #ff1b1c;
+$white: #e2e8ce; 
+$black: #010508;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+#app {
+    display: block;
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    padding: 10vh 0;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    background-color: $blue;
+
+    button {
+        width: 80%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        border: none;
+        background-color: $yellow;
+        color: $black;
+        font-size: 1.5em;
+        font-weight: 700;
+        letter-spacing: .1em;
+        padding: .5em;
+        outline: 3px solid #c4a831;
+    }
+
+    h1 {
+        width: 100%;
+        margin-bottom: 5vh;
+        font-family: 'Catamaran', sans-serif;
+
+        .title-word {
+            width: inherit;
+            padding-left: 10%;
+
+            span {
+                display: inline-block;
+                width: 15%;
+                font-size: 10vw;
+                text-align: center;
+            }
+        }
+
+        .title-word:nth-of-type(1),
+        .title-word:nth-of-type(3) {
+            color: $yellow;
+        }
+        .title-word:nth-of-type(2) {
+            color: $white;
+        }
+    }
+
+    main {
+
+        .search-params {
+            width: 70%;
+            margin: 3vh 15% 10vh;
+            padding: 10px 30px 30px;
+            text-align: center;
+            outline: 3px solid #c4a831;
+            
+
+            .params-label {
+                font-size: 1em;
+                color: $white;
+                margin-bottom: 2vh;
+                margin-top: 2vh;
+            }
+
+            .range-output {
+                color: $yellow;
+                font-weight: 700;
+            }
+
+            .slidecontainer {
+                width: 100%;
+            }
+            
+            .slider {
+                -webkit-appearance: none; 
+                appearance: none;
+                width: 100%; 
+                height: 15px; 
+                background: $grey;
+                outline: none; 
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+            }
+            
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none; 
+                appearance: none;
+                width: 25px; 
+                height: 25px; 
+                background: $yellow;
+                cursor: pointer;
+            }
+            
+            .slider::-moz-range-thumb {
+                width: 25px;
+                height: 25px;
+                background: $yellow;
+                cursor: pointer;
+            }
+        }
+
+        .movie-container {
+            width: 90%;
+            margin: 5vh 5%;
+            height: auto;
+    
+            .title-container {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 5%;
+                height: 80px;
+                color: $white;
+                background-color: $blue;
+    
+                #movie-title {
+                    position: absolute;
+                    left: 10%;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 80%;
+                    height: auto;
+                    text-align: center;
+                    font-size: 1.25em;
+                    font-weight: 700;
+                    text-transform: capitalize;
+                }
+            }
+    
+            #movie-image {
+                width: 200px;
+                height: 300px;
+                border: 3px solid white;
+                margin-left: 50%;
+                transform: translateX(-50%);
+                overflow: hidden;
+                background-color: darkgrey;
+    
+                img {
+                    width: 200px;
+                    height: 300px;
+                }
+            }
+    
+            #description {
+                color: $white;
+                width: 80%;
+                margin: 5vh 10%;
+                text-align: justify;
+            }
+        }
+    
+        .movie-details {
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 80%;
+            margin: 0 10%;
+    
+            #rating,
+            #year,
+            .detail-title {
+                width: 50%;
+            } 
+    
+            .detail-title {
+                color: $yellow;
+                font-weight: 700;
+            }
+    
+            #rating,
+            #year {
+                color: $white;
+                height: 30px;
+            }
+        }
+    }
+}
+
+
